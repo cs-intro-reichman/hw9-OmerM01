@@ -149,18 +149,15 @@ public class LinkedList {
 	 * @return the index of the block, or -1 if the block is not in this list
 	 */
 	public int indexOf(MemoryBlock block) {
-		Node current = first;
-    	int index = 0;
-
-    	while (current != null) {
-        	if (current.block.equals(block)) {
-            	return index;
-        	}
-        current = current.next;
-        index++;
-    	}		
-
-    	throw new IllegalArgumentException("ERROR IllegalArgumentException due to unfound index: index must be between 0 and size");
+		ListIterator iterator = new ListIterator(this.first);
+		int counter = 0;
+		while(iterator.hasNext()) {
+			if (block.equals(iterator.current.block))	
+				return counter;
+			counter ++;
+			iterator.next();         // Move iterator forward
+		}
+		return -1;
 	}
 	/**
 	 * Removes the given node from this list.	

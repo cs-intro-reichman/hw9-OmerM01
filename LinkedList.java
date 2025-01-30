@@ -212,23 +212,26 @@ public class LinkedList {
 	 */
 	public void remove(int index) {
 		if (index < 0 || index >= size) {
-			throw new IllegalArgumentException("index must be between 0 and size");
+			System.out.println("false");
+			return;
 		}
-	
 		if (index == 0) {
 			first = first.next;
 			if (first == null) {
 				last = null;
 			}
-		} else {
-			Node prev = getNode(index - 1);
-			Node toRemove = prev.next;
-			prev.next = toRemove.next;
-			if (toRemove == last) {
-				last = prev;
-			}
+			size--;
+			System.out.println("true");
+			return;
+		}
+		Node prev = getNode(index - 1);
+		Node toRemove = prev.next;
+		prev.next = toRemove.next;
+		if (toRemove == last) {
+			last = prev;
 		}
 		size--;
+		System.out.println("true");
 	}
 
 	/**
@@ -239,30 +242,34 @@ public class LinkedList {
 	 *         if the given memory block is not in this list
 	 */
 	public void remove(MemoryBlock block) {
+		if (first == null) {
+			System.out.println("false");
+			return;
+		}
+		if (first.block.equals(block)) {
+			first = first.next;
+			if (first == null) {
+				last = null;
+			}
+			size--;
+			System.out.println("true");
+			return;
+		}
 		Node current = first;
-    Node previous = null;
-
-    while (current != null) {
-        if (current.block.equals(block)) {
-            if (previous == null) { // Removing the first node
-                first = current.next;
-                if (first == null) {
-                    last = null;
-                }
-            } else {
-                previous.next = current.next;
-                if (current == last) {
-                    last = previous;
-                }
-            }
-            size--;
-            return;
-        }
-        previous = current;
-        current = current.next;
-    }
-
-    throw new IllegalArgumentException("index must be between 0 and size");
+		while (current.next != null) {
+			if (current.next.block.equals(block)) {
+				Node toRemove = current.next;
+				current.next = toRemove.next;
+				if (toRemove == last) {
+					last = current;
+				}
+				size--;
+				System.out.println("true");
+				return;
+			}
+			current = current.next;
+		}
+		System.out.println("false");
 	}	
 
 	/**

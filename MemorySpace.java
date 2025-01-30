@@ -91,15 +91,13 @@ public class MemorySpace {
 	public void free(int address) {
 		for (int i = 0; i < allocatedList.getSize(); i++) {
 			MemoryBlock allocatedBlock = allocatedList.getBlock(i);
-	
 			if (allocatedBlock.baseAddress == address) {
 				allocatedList.remove(i);
 				freeList.addLast(allocatedBlock);
 				return;
 			}
 		}
-	
-		return;
+		throw new IllegalArgumentException("ERROR IllegalArgumentException: index must be between 0 and size");
 	}
 	
 	/**

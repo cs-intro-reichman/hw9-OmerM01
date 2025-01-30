@@ -98,6 +98,8 @@ public class MemorySpace {
 				return;
 			}
 		}
+		
+		throw new IllegalArgumentException("index must be between 0 and size");
 	}
 	
 	/**
@@ -125,7 +127,7 @@ public class MemorySpace {
 			if (current.baseAddress + current.length == next.baseAddress) {
 				current.length += next.length;
 				freeList.remove(i + 1);
-				i--; 
+				i--; // Check again from the merged block
 			}
 		}
 	}

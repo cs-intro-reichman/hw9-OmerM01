@@ -81,7 +81,7 @@ public class LinkedList {
 	 */
 	public void add(int index, MemoryBlock block) {
 		if (index < 0 || index > size) {
-			throw new IllegalArgumentException("Index out of bounds");
+			throw new IllegalArgumentException("index must be between 0 and size");
 		}
 	
 		Node newNode = new Node(block);
@@ -100,7 +100,7 @@ public class LinkedList {
 				last = newNode;
 			}
 		}
-		size++; 
+		size++;
 	}
 
 	/**
@@ -150,15 +150,17 @@ public class LinkedList {
 	 */
 	public int indexOf(MemoryBlock block) {
 		Node current = first;
-    	int index = 0;
-    	while (current != null) {
-        	if (current.block.equals(block)) {
-            	return index;
-        	}
+    int index = 0;
+
+    while (current != null) {
+        if (current.block.equals(block)) {
+            return index;
+        }
         current = current.next;
         index++;
-    	}
-    	return -1;
+    }
+
+    throw new IllegalArgumentException("ERROR IllegalArgumentException due to unfound index: index must be between 0 and size");
 	}
 
 	/**
@@ -168,7 +170,11 @@ public class LinkedList {
 	 *        the node that will be removed from this list
 	 */
 	public void remove(Node node) {
-		if (node == null || first == null) {
+		if (node == null) {
+			throw new NullPointerException("ERROR NullPointerException");
+		}
+	
+		if (first == null) {
 			return;
 		}
 	
@@ -204,7 +210,7 @@ public class LinkedList {
 	 */
 	public void remove(int index) {
 		if (index < 0 || index >= size) {
-			throw new IllegalArgumentException("Index out of bounds");
+			throw new IllegalArgumentException("index must be between 0 and size");
 		}
 	
 		if (index == 0) {
@@ -232,19 +238,19 @@ public class LinkedList {
 	 */
 	public void remove(MemoryBlock block) {
 		Node current = first;
-    	Node previous = null;
+    Node previous = null;
 
-    	while (current != null) {
+    while (current != null) {
         if (current.block.equals(block)) {
-            if (previous == null) { 
+            if (previous == null) { // Removing the first node
                 first = current.next;
                 if (first == null) {
-                    last = null; // list is now empty
+                    last = null;
                 }
             } else {
                 previous.next = current.next;
                 if (current == last) {
-                    last = previous; // here i update last pointer if last node is removed
+                    last = previous;
                 }
             }
             size--;
@@ -252,8 +258,9 @@ public class LinkedList {
         }
         previous = current;
         current = current.next;
-   	 }
-    	throw new IllegalArgumentException("Block not found in list");
+    }
+
+    throw new IllegalArgumentException("index must be between 0 and size");
 	}	
 
 	/**

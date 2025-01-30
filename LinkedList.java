@@ -228,7 +228,29 @@ public class LinkedList {
 	 *         if the given memory block is not in this list
 	 */
 	public void remove(MemoryBlock block) {
-		//// Write your code here
+		Node current = first;
+    	Node previous = null;
+
+    	while (current != null) {
+        if (current.block.equals(block)) {
+            if (previous == null) { 
+                first = current.next;
+                if (first == null) {
+                    last = null; // list is now empty
+                }
+            } else {
+                previous.next = current.next;
+                if (current == last) {
+                    last = previous; // here i update last pointer if last node is removed
+                }
+            }
+            size--;
+            return;
+        }
+        previous = current;
+        current = current.next;
+   	 }
+    	throw new IllegalArgumentException("Block not found in list");
 	}	
 
 	/**
@@ -242,7 +264,14 @@ public class LinkedList {
 	 * A textual representation of this list, for debugging.
 	 */
 	public String toString() {
-		//// Replace the following statement with your code
-		return "";
+		String s = "";
+    	Node current = first;
+
+    	while (current != null) {
+        	s = s + current.block + " ";
+        	current = current.next;
+    	}
+
+   	 	return s;
 	}
 }

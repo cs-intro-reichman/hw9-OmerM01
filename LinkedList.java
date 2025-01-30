@@ -160,7 +160,7 @@ public class LinkedList {
         index++;
     	}		
 
-    	throw new IllegalArgumentException("index must be between 0 and size");
+    	throw new IllegalArgumentException("ERROR IllegalArgumentException due to unfound index: index must be between 0 and size");
 	}
 	/**
 	 * Removes the given node from this list.	
@@ -170,8 +170,7 @@ public class LinkedList {
 	 */
 	public void remove(Node node) {
 		if (node == null) {
-			throw new IllegalArgumentException("index must be between 0 and size");
-
+			throw new NullPointerException("ERROR NullPointerException!");
 		}
 	
 		if (first == null) {
@@ -184,21 +183,24 @@ public class LinkedList {
 				last = null;
 			}
 			size--;
+			System.out.println("true");
 			return;
 		}
 	
 		Node current = first;
-		while (current.next != null && current.next != node) {
+		while (current.next != null) {
+			if (current.next == node) {
+				current.next = node.next;
+				if (node == last) {
+					last = current;
+				}
+				size--;
+				System.out.println("true");
+				return;
+			}
 			current = current.next;
 		}
-	
-		if (current.next == node) {
-			current.next = node.next;
-			if (node == last) {
-				last = current;
-			}
-			size--;
-		}
+		System.out.println("false");
 	}
 
 	/**

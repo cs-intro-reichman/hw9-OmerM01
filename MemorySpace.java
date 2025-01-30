@@ -99,7 +99,7 @@ public class MemorySpace {
 			}
 		}
 	
-		throw new IllegalArgumentException("index must be between 0 and size");
+		return;
 	}
 	
 	/**

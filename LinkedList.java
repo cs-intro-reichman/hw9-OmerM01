@@ -160,7 +160,7 @@ public class LinkedList {
         index++;
     	}		
 
-    	throw new IllegalArgumentException("ERROR IllegalArgumentException due to unfound index: index must be between 0 and size");
+    	throw new IllegalArgumentException("index must be between 0 and size");
 	}
 	/**
 	 * Removes the given node from this list.	

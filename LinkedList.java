@@ -167,9 +167,8 @@ public class LinkedList {
 		if (node == null) {
 			throw new NullPointerException("NullPointerException!");
 		}
-	
-		int index = indexOf(node.block);
-		if (index == -1) {
+		int indX = indexOf(node.block);
+		if (indX == -1) {
 			throw new IllegalArgumentException("index must be between 0 and size");
 		}
 		if(first == node) {
@@ -180,10 +179,10 @@ public class LinkedList {
 			size--;
 			return;
 		}
-			getNode(index - 1).next = getNode(index).next;
+			getNode(indX-1).next = getNode(indX).next;
 			size--;
 			if(node == last) { 
-				last = getNode(index - 1);
+				last = getNode(indX-1);
 				last.next = null;
 			}
 	}

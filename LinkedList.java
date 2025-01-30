@@ -179,9 +179,9 @@ public class LinkedList {
 			size--;
 			return;
 		}
-			getNode(indX-1).next = getNode(indX).next;
-			size--;
-			if(node == last) { 
+		getNode(indX-1).next = getNode(indX).next;
+		size--;
+		if(node == last) { 
 				last = getNode(indX-1);
 				last.next = null;
 			}

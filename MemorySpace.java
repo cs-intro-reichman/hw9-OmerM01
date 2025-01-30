@@ -117,7 +117,6 @@ public class MemorySpace {
 		for (int i = 0; i < freeList.getSize(); i++) {
 			MemoryBlock currentBlock = freeList.getBlock(i);
 			int endAddress = currentBlock.baseAddress + currentBlock.length;
-	
 			Node iterator = freeList.getFirst(); 
 			while (iterator != null) {
 				MemoryBlock nextBlock = iterator.block;

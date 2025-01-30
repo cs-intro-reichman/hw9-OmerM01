@@ -80,7 +80,27 @@ public class LinkedList {
 	 *         if index is negative or greater than the list's size
 	 */
 	public void add(int index, MemoryBlock block) {
-		//// Write your code here
+		if (index < 0 || index > size) {
+			throw new IllegalArgumentException("Index out of bounds");
+		}
+	
+		Node newNode = new Node(block);
+	
+		if (index == 0) {
+			newNode.next = first;
+			first = newNode;
+			if (size == 0) {
+				last = newNode;
+			}
+		} else {
+			Node prev = getNode(index - 1);
+			newNode.next = prev.next;
+			prev.next = newNode;
+			if (newNode.next == null) {
+				last = newNode;
+			}
+		}
+		size++; 
 	}
 
 	/**

@@ -80,12 +80,10 @@ public class LinkedList {
 	 *         if index is negative or greater than the list's size
 	 */
 	public void add(int index, MemoryBlock block) {
-		if (index < 0 || index > size) {
+		if (index > size || index < 0) {
 			throw new IllegalArgumentException("index must be between 0 and size");
 		}
-	
 		Node newNode = new Node(block);
-	
 		if (index == 0) {
 			newNode.next = first;
 			first = newNode;
@@ -149,12 +147,12 @@ public class LinkedList {
 	 * @return the index of the block, or -1 if the block is not in this list
 	 */
 	public int indexOf(MemoryBlock block) {
-		int counter = 0;
+		int count = 0;
 		ListIterator iterator = new ListIterator(this.first);
 		while(iterator.hasNext()) {
 			if (block.equals(iterator.current.block))	
-				return counter;
-			counter ++;
+				return count;
+			count += 1;
 			iterator.next();         // Move iterator forward
 		}
 		return -1;

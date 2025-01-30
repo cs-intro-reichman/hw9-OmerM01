@@ -150,19 +150,18 @@ public class LinkedList {
 	 */
 	public int indexOf(MemoryBlock block) {
 		Node current = first;
-    int index = 0;
+    	int index = 0;
 
-    while (current != null) {
-        if (current.block.equals(block)) {
-            return index;
-        }
+    	while (current != null) {
+        	if (current.block.equals(block)) {
+            	return index;
+        	}
         current = current.next;
         index++;
-    }
+    	}		
 
-    throw new IllegalArgumentException("ERROR IllegalArgumentException due to unfound index: index must be between 0 and size");
+    	throw new IllegalArgumentException("ERROR IllegalArgumentException due to unfound index: index must be between 0 and size");
 	}
-
 	/**
 	 * Removes the given node from this list.	
 	 * 

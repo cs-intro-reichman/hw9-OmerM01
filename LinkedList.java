@@ -170,7 +170,8 @@ public class LinkedList {
 	 */
 	public void remove(Node node) {
 		if (node == null) {
-			throw new NullPointerException("ERROR NullPointerException");
+			throw new IllegalArgumentException("index must be between 0 and size");
+
 		}
 	
 		if (first == null) {
